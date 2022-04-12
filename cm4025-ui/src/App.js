@@ -6,13 +6,15 @@ import Home from './pages/Home';
 import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
+import Landing from './pages/Landing';
 
 
 //large portions of this codes structure have been adapted from https://github.com/machadop1407/react-website-tutorial
 //I used this tutorial https://www.youtube.com/watch?v=QwarZBtFoFA&t which guides through the creation of the above code
 
 function App() {
-  return (
+
+    return (
       <div className="App">
           <Router>
               <Navbar />
@@ -21,6 +23,7 @@ function App() {
                   <Route path='/about' exact element={<About/>}/>
                   <Route path='/login' exact element={<Login/>}/>
                   <Route path='/signup' exact element={<Signup/>}/>
+                  <Route path='/landing' exact element={<Landing/>}/>
               </Routes>
               <Footer />
           </Router>
