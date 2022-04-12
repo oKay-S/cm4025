@@ -5,16 +5,17 @@ const Comment = require('../models/blogPost');
 
 
 // Routes
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
+    try {
+        const comments = await Comment.find({})
 
-    Comment.find({  })
-        .then((data) => {
-            console.log('Data: ', data);
-            res.json(data);
-        })
-        .catch((error) => {
-            console.log('error: ', daerrorta);
-        });
-});
+
+        console.log(comments);
+
+        return res.json(comments || []);
+    } catch (e) {
+        return res.json([]);
+    }
+    });
 
 module.exports = router;

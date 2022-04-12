@@ -15,12 +15,14 @@ router.post('/', async (req, res) => {
             if (users !== null && users.password === req.body.password){
                 console.log('login', users.username)
                 req.session.loggedinas = users.username;
-                res.redirect('/landing')
+                console.log(req.session.loggedinas);
+                return res.json({success: true});
             }
             else{
                 console.log("failed login")
+                return res.json({success: false});
             }
-        })
+        });
 });
 
 module.exports = router;

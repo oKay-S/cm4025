@@ -9,14 +9,15 @@ const url = "mongodb://localhost:27017/mydb";
 // POST method route
 router.post('/', async (req, res) => {
     MongoClient.connect(url, async function (err, database) {
+
         var dbase = database.db("mydb");
         try {
-            await dbase.collection('comments').insertOne(req.body);
+            await dbase.collection('comments').insertOne({'comment': req.body.bulk, 'username': req.session.loggedinas});
             console.log('saved comment to database');
-            res.redirect('/landing');
+            return res.json({success: true});
         }
         catch(e){
-            console.log(e);
+            return res.json({success: false});
         }
     })
 });

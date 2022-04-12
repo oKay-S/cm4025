@@ -7,6 +7,8 @@ var multer = require('multer');
 var session = require('express-session');
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/mydb";
+const mongoose = require('mongoose');
+global.db = mongoose.createConnection("mongodb://localhost:27017/mydb");
 
 var dbase;
 var upload = multer();
@@ -17,15 +19,21 @@ var signupRouter = require('./routes/signup');
 var loginRouter = require('./routes/login');
 var landingRouter = require('./routes/landing');
 var usernameRouter = require('./routes/getUsername');
+var commentRouter = require('./routes/comments');
+var commentaddRouter = require('./routes/addcomment');
+var displaynameRouter = require('./routes/getDisplay');
 
+var corsOptions = {credentials: true, origin: 'http://localhost:3000'};
 
 var app = express();
-var expresssession = session({secret: "supersecretsecretsecretandalsoilikecheese", resave: true, saveUninitialized: true});
+
+app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
+
+var expresssession = session({secret: "supersecretsecretsecretandalsoilikecheese", resave: true, saveUninitialized: true, cookie: {secure: false}});
 
 // for parsing multipart/form-data
 app.use(upload.array());
-app.use(cors());
-app.options('*', cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(expresssession);
@@ -63,5 +71,8 @@ app.use('/signupform', signupRouter);
 app.use('/loginform', loginRouter);
 app.use('/landing', landingRouter);
 app.use('/getUsername', usernameRouter);
+app.use('/getDisplay', displaynameRouter);
+app.use('/comments', commentRouter);
+app.use('/addcomment', commentaddRouter);
 
 module.exports = app;

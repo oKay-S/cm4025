@@ -8,10 +8,10 @@ router.post('/', (req, res) => {
     MongoClient.connect(url, function (err, database) {
         var dbase = database.db("mydb");
         var users = dbase.collection('users')
-        const displaynameforuser = dbase.users.updateOne({'username': req.session.loggedinas}, req.body.displayname)
+        console.log(req.session.loggedinas);
+        const displaynameforuser = users.updateOne({'username': req.session.loggedinas}, {$set: {'displayname': req.body.displayname}})
             console.log('metachange', users.username)
-            res.redirect('/landing')
-        return displaynameforuser;
+        return res.json({displaynameforuser, success: true});
     });
     }
 );

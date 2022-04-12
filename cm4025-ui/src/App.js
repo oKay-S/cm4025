@@ -7,6 +7,8 @@ import About from './pages/About';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Landing from './pages/Landing';
+import axios from "axios";
+axios.defaults.withCredentials = true;
 
 
 //large portions of this codes structure have been adapted from https://github.com/machadop1407/react-website-tutorial

@@ -6,15 +6,11 @@ const mongoose = require('mongoose');
 // Schema
 const Schema = mongoose.Schema;
 const BlogPostSchema = new Schema({
-    title: String,
-    body: String,
-    date: {
-        type: String,
-        default: Date.now()
-    }
+    commentUsername: String,
+    bulk: String
 });
 
 // Model
-const Comment = mongoose.model('BlogPost', BlogPostSchema);
+const Comment = db.model('Comments', BlogPostSchema);
 
 module.exports =  Comment;

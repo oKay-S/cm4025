@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var bodyParser = require('body-parser');
 
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/mydb";
@@ -13,10 +14,10 @@ router.post('/', async (req, res) => {
             try {
                 await dbase.collection('users').insertOne(req.body);
                 console.log('saved to database');
-                res.redirect('/login');
+                return res.json({success: true});
             }
             catch(e){
-                console.log(e);
+                return res.json({success: false});
             }
 
         }

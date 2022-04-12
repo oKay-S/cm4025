@@ -13,8 +13,9 @@
 .contentBox{
     float: left;
     width: 200px;
-    margin-left: 10px;
-    margin-top: 10px;
-    padding: 5px;
-    border: 2px solid blue;
+    height: 50vh;
+    margin: 10px;
+    padding: 10vh;
+    background-color: white;
+    opacity: 0.7;
 }
