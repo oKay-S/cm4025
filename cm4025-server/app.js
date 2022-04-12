@@ -9,7 +9,7 @@ const url = "mongodb://localhost:27017/mydb";
 const mongoose = require('mongoose');
 global.db = mongoose.createConnection("mongodb://localhost:27017/mydb");
 
-const url = process.env.MONGODB_URI;
+const uri = process.env.MONGODB_URI;
 
 
 var dbase;
