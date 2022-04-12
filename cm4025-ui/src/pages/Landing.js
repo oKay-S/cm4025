@@ -1,4 +1,4 @@
-import React, { Component }  from 'react';
+import React, { Component, useEffect }  from 'react';
 import { Link } from "react-router-dom";
 import BgImage from '../assets/blue-iguana-g83afdb16e_1920.jpg';
 import "../styles/Landing.css";
@@ -16,11 +16,15 @@ function Landing (){
 
     const [comments, setComments] = React.useState([]);
 
-    const displayComments = (comments) => {
+    const displayComments = () => {
         axios.get('http://localhost:3001/comments').then(({ data }) => setComments(data))
             .catch( e => console.log(e));
     };
 
+
+    useEffect(() => {
+        displayComments();
+    }, []);
 
 
     const enterComment = (event) => {
@@ -35,17 +39,6 @@ function Landing (){
             console.log(response.data);
         } catch (error) {
             console.log(error)
-        }
-    }
-
-    const getDisplayname = async (event) => {
-        try {
-            // make axios post request
-            const response = await axios.get("http://localhost:3001/getDisplay");
-            console.log(response.data);
-            return response;
-        } catch (error) {
-            console.log(error);
         }
     }
 
@@ -69,9 +62,9 @@ function Landing (){
 
     const commentsFinal = comments.map(comment => (
         <div key={comment._id}>
-            <h2>{comment.commentUsername}</h2>
+            <h2>{comment.username}</h2>
             <h3>{comment._id}</h3>
-            <p>{comment.bulk}</p>
+            <p>{comment.comment}</p>
             </div>
             ));
 
@@ -92,7 +85,6 @@ function Landing (){
             <div className="contentBox">
                 <h1>Settings</h1>
                 <form onSubmit={updateDisplayname}>
-                    <h2>{getDisplayname}</h2>
                     <input type="text" placeholder="Update Display Name" onChange={handleChange} name="dname"
                            required/>
                     <button type="submit">Sumbit</button>
