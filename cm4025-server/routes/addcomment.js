@@ -3,7 +3,7 @@ var router = express.Router();
 
 const Comment = require('../models/blogPost');
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/mydb";
+const url = process.env.MONGODB_URI;
 
 
 // POST method route

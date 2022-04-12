@@ -5,9 +5,10 @@ var logger = require('morgan');
 var multer = require('multer');
 var session = require('express-session');
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/mydb";
+const url = process.env.MONGODB_URI;
 const mongoose = require('mongoose');
 global.db = mongoose.createConnection("mongodb://localhost:27017/mydb");
+
 
 
 var dbase;

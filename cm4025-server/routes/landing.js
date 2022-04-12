@@ -3,7 +3,7 @@ var router = express.Router();
 
 
 const MongoClient = require('mongodb').MongoClient;
-const url = "mongodb://localhost:27017/mydb";
+const url = process.env.MONGODB_URI;
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
