@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
                 console.log('login', users.username)
                 req.session.loggedinas = users.username;
                 console.log(req.session.loggedinas);
-                return res.json({success: true});
+                return res.json({success: true, redirectUrl: '/landing'});
             }
             else{
                 console.log("failed login")

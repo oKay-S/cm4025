@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import BgImage from '../assets/spotted-hyena-g4c2992753_1920.jpg';
 import "../styles/Login.css";
 
-const baseURL = "https://localhost:3001/signupform";
+const baseURL = "/signupform";
 
 const Signup = () => {
 
@@ -25,7 +25,7 @@ const Signup = () => {
 
         try {
             // make axios post request
-            const response = await axios.post("http://localhost:3001/signupform", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
+            const response = await axios.post("/signupform", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
             console.log(response.data);
         } catch (error) {
             console.log(error)

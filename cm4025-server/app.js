@@ -2,13 +2,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-const cors = require('cors');
 var multer = require('multer');
 var session = require('express-session');
 const MongoClient = require('mongodb').MongoClient;
 const url = "mongodb://localhost:27017/mydb";
 const mongoose = require('mongoose');
 global.db = mongoose.createConnection("mongodb://localhost:27017/mydb");
+
 
 var dbase;
 var upload = multer();
@@ -23,12 +23,8 @@ var commentRouter = require('./routes/comments');
 var commentaddRouter = require('./routes/addcomment');
 var displaynameRouter = require('./routes/getDisplay');
 
-var corsOptions = {credentials: true, origin: 'http://localhost:3000'};
-
 var app = express();
 
-app.use(cors(corsOptions));
-app.options('*', cors(corsOptions));
 
 var expresssession = session({secret: "supersecretsecretsecretandalsoilikecheese", resave: true, saveUninitialized: true, cookie: {secure: false}});
 
@@ -40,6 +36,8 @@ app.use(expresssession);
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+
 
 //Connect to mongoDB
 MongoClient.connect(url, function(err, database){
@@ -55,7 +53,7 @@ MongoClient.connect(url, function(err, database){
         console.log(error);
     }
     try{
-        dbase.createCollection("users", function(err, res){
+        dbase.createCollection("comments", function(err, res){
             console.log("collection comments created!");
         })
     }
@@ -65,7 +63,6 @@ MongoClient.connect(url, function(err, database){
 });
 
 
-app.use('/', indexRouter);
 app.use('/user', userRouter);
 app.use('/signupform', signupRouter);
 app.use('/loginform', loginRouter);
@@ -74,5 +71,9 @@ app.use('/getUsername', usernameRouter);
 app.use('/getDisplay', displaynameRouter);
 app.use('/comments', commentRouter);
 app.use('/addcomment', commentaddRouter);
+
+app.get('*', (req,res) =>{
+    res.sendFile(path.join(__dirname+'/public/index.html'));
+});
 
 module.exports = app;

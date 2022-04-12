@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.451b3cbf.css",
+    "main.js": "/static/js/main.2322603e.js",
+    "static/js/787.363ab281.chunk.js": "/static/js/787.363ab281.chunk.js",
+    "static/media/spotted-hyena-g4c2992753_1920.jpg": "/static/media/spotted-hyena-g4c2992753_1920.3f0fd47f434a9c3bf703.jpg",
+    "static/media/blue-iguana-g83afdb16e_1920.jpg": "/static/media/blue-iguana-g83afdb16e_1920.dae2f6d96c61ece3c834.jpg",
+    "static/media/vulture-gf088d52aa_1920.jpg": "/static/media/vulture-gf088d52aa_1920.40b7faa0f4a7c1a0d646.jpg",
+    "static/media/possum-ga6a02f548_1920.jpg": "/static/media/possum-ga6a02f548_1920.22c27f112d2727c9b52f.jpg",
+    "static/media/Love-for-the-Uglies-logos_transparent.png": "/static/media/Love-for-the-Uglies-logos_transparent.9326aaa1a492273919e0.png",
+    "index.html": "/index.html",
+    "main.451b3cbf.css.map": "/static/css/main.451b3cbf.css.map",
+    "main.2322603e.js.map": "/static/js/main.2322603e.js.map",
+    "787.363ab281.chunk.js.map": "/static/js/787.363ab281.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.451b3cbf.css",
+    "static/js/main.2322603e.js"
+  ]
+}

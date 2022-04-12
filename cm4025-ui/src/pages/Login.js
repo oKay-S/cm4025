@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from "react-router-dom";
+import {Link, useNavigate } from "react-router-dom";
 import BgImage from '../assets/spotted-hyena-g4c2992753_1920.jpg';
 import "../styles/Login.css";
 import axios from "axios";
-
 function Login() {
+
+    let navigate = useNavigate();
 
     const [formValue, setformValue] = React.useState({
         username: '',
         password: ''
     });
+
+
 
     const createAccount = async(event) => {
         event.preventDefault();
@@ -21,7 +24,8 @@ function Login() {
 
         try {
             // make axios post request
-            const response = await axios.post("http://localhost:3001/loginform", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
+            const response = await axios.post("/loginform", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
+            navigate("/landing");
 
         } catch (error) {
             console.log(error)

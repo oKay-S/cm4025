@@ -17,7 +17,7 @@ function Landing (){
     const [comments, setComments] = React.useState([]);
 
     const displayComments = () => {
-        axios.get('http://localhost:3001/comments').then(({ data }) => setComments(data))
+        axios.get('/comments').then(({ data }) => setComments(data))
             .catch( e => console.log(e));
     };
 
@@ -35,7 +35,7 @@ function Landing (){
         loginFormData.append("bulk", formValue.cmnt);
         try {
             // make axios post request
-            const response = axios.post("http://localhost:3001/addcomment", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
+            const response = axios.post("/addcomment", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
             console.log(response.data);
         } catch (error) {
             console.log(error)
@@ -48,7 +48,7 @@ function Landing (){
         // store the states in the form data
         const loginFormData = new FormData();
         loginFormData.append("displayname", formValue.dname);
-        const response = await axios.post("http://localhost:3001/user", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
+        const response = await axios.post("/user", loginFormData, {headers: {'Content-Type': 'multipart/form-data'}});
         console.log(response.data);
     }
 

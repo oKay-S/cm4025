@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+/cm4025-server/build
 
 # misc
 .DS_Store
